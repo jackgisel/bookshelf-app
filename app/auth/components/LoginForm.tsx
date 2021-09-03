@@ -3,6 +3,7 @@ import { LabeledTextField } from "app/core/components/LabeledTextField"
 import { Form, FORM_ERROR } from "app/core/components/Form"
 import login from "app/auth/mutations/login"
 import { Login } from "app/auth/validations"
+import { Text, Flex } from "@chakra-ui/react"
 
 type LoginFormProps = {
   onSuccess?: () => void
@@ -12,7 +13,7 @@ export const LoginForm = (props: LoginFormProps) => {
   const [loginMutation] = useMutation(login)
 
   return (
-    <div>
+    <Flex align="center" flexDir="column">
       <h1>Login</h1>
 
       <Form
@@ -39,15 +40,22 @@ export const LoginForm = (props: LoginFormProps) => {
         <LabeledTextField name="password" label="Password" placeholder="Password" type="password" />
         <div>
           <Link href={Routes.ForgotPasswordPage()}>
-            <a>Forgot your password?</a>
+            <Text color="red.700" display="inline" textAlign="center">
+              Forgot your password?
+            </Text>
           </Link>
         </div>
       </Form>
 
-      <div style={{ marginTop: "1rem" }}>
-        Or <Link href={Routes.SignupPage()}>Sign Up</Link>
-      </div>
-    </div>
+      <Text fontSize="md">
+        Need an account?{" "}
+        <Link href={Routes.SignupPage()}>
+          <Text color="blue.600" display="inline">
+            Sign Up
+          </Text>
+        </Link>
+      </Text>
+    </Flex>
   )
 }
 
